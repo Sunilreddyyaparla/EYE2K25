@@ -1,0 +1,41 @@
+body { 
+  font-family: Arial, sans-serif; 
+  text-align: center; 
+  padding: 20px; 
+  background-color: #f5f5f5;
+}
+.container { 
+  max-width: 500px; 
+  margin: auto; 
+  padding: 30px; 
+  border-radius: 12px; 
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  background-color: white;
+}
+.details-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.button { 
+  background-color: #0dfa15; 
+  color: rgb(10, 10, 10); 
+  padding: 12px 24px;
+  border: none; 
+  border-radius: 6px;
+  cursor: pointer; 
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: #45a049;
+}
+.button:disabled { 
+  background-color: #e6270e; 
+  cursor: not-allowed; 
+}
+.checkbox-container { 
+  margin: 20px 0;
+  text-align: left;
+}

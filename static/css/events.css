@@ -1,0 +1,426 @@
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Navigation Styles */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #555;
+}
+
+.sidenav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding: 2%;
+}
+
+.menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 2;
+    color: #fff;
+}
+
+.main-content {
+    transition: margin-left 0.5s;
+    padding: 20px;
+}
+
+/* Heading Styles */
+.dynamic-heading {
+    text-align: center;
+    color: white;
+    margin: 50px 0 20px 0;
+    font-size: 2rem;
+    animation: glow 1s infinite;
+}
+
+@keyframes glow {
+    0%, 25%, 100% { 
+        text-shadow: 0px 0px 25px rgba(19, 217, 108, 0.8); 
+    } 
+    50%, 75% { 
+        text-shadow: 0 0 25px rgba(231, 10, 10, 0.8); 
+    } 
+}
+
+/* Event Container Styles */
+.event-container {
+    display: inline-block;
+    width: 90%; /* Ensure equal width */
+    max-width: 250px; /* Standardize max-width */
+    min-height: 280px; /* Ensure equal height */
+    height: auto; /* Allow height to adjust dynamically */
+    margin: 15px 5px;
+    padding: 15px; /* Reduce padding */
+    text-align: center;
+    background-color: rgba(13, 13, 13, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event-container:hover {
+    transform: translateY(-3px);
+}
+
+.event-image {
+    width: 100%;
+    max-width: 200px; /* Standardize image size */
+    height: auto;
+    margin: 5px 0 10px 0;
+    border-radius: 8px;
+}
+
+.event-details {
+    flex-grow: 1;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: rgba(139, 214, 210, 0.9);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.event-container h3 {
+    color: #e8f0f9;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.event-description {
+    color: #e02121;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    text-align: justify;
+    padding: 0 5px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+.prize-section {
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+
+.prize-section p {
+    color: #333;
+    margin: 5px 0;
+}
+
+.prize-section p:first-child {
+    color: #4CAF50;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Typography */
+h3 {
+    color: #333;
+    margin: 10px 0;
+}
+
+.event-container p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Button Styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Footer Styles */
+.footer-container {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.developer-text {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 768px) {
+    .event-container {
+        display: inline-block;
+        vertical-align: top;
+        width: 45%;
+        max-width: 320px;
+    }
+    .main-content {
+        padding: 40px;
+    }
+    .dynamic-heading {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .event-container {
+        width: 100%;
+        margin: 20px auto;
+    }
+    .menu-btn {
+        font-size: 25px;
+    }
+    .dynamic-heading {
+        font-size: 1.8rem;
+    }
+    .event-description {
+        font-size: 0.9rem;
+    }
+    .prize-section p {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 10px;
+    position: relative;
+    animation: modalOpen 0.3s ease-out;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.modal-image-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.modal-details {
+    flex: 2;
+    min-width: 300px;
+}
+
+.modal-details h3 {
+    color: #4CAF50;
+    margin: 20px 0 10px 0;
+}
+
+.modal-details ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-details ul li {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.modal-details ul li:before {
+    content: "•";
+    color: #4CAF50;
+    position: absolute;
+    left: 0;
+}
+
+.modal-prize-section {
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.modal-prize-section p {
+    margin: 5px 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.modal-registration {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.modal-register-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.modal-register-btn:hover {
+    background-color: #45a049;
+}
+
+/* Make event containers clickable */
+.event-container {
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-image-container {
+        max-width: 100%;
+    }
+}
