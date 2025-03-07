@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration - EYE 2K25</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/reg.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>EYE 2K25 Event Registration</h2>
+            <p>Join us for an amazing technical fest experience!</p>
+        </div>
+
+        <form id="registrationForm" method="POST" action="{{ url_for('registration') }}">
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="fullname" id="fullname" class="input-field" 
+                       placeholder="Full Name" required pattern="[A-Za-z ]{3,50}"
+                       title="Please enter a valid name (3-50 characters, letters only)">
+                <div class="error-message">Please enter a valid name</div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email" class="input-field" 
+                       placeholder="Email Address" required>
+                <div class="error-message">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-phone"></i>
+                <input type="tel" name="mobile" id="mobile" class="input-field" 
+                       placeholder="Mobile Number" required pattern="[0-9]{10}"
+                       title="Please enter a valid 10-digit mobile number">
+                <div class="error-message">Please enter a valid 10-digit mobile number</div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-university"></i>
+                <input type="text" name="yourcollege" id="college" class="input-field" 
+                       placeholder="College Name" required>
+                <div class="error-message">Please enter your college name</div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="text" name="event" id="event" class="input-field" 
+                       value="{{ selected_event }}" readonly>
+                <div class="error-message">Event selection required</div>
+            </div>
+            
+            <div id="eventFee" class="event-fee show">
+                Registration Fee: ₹{{ event_fee }}
+            </div>
+
+            <button type="submit" class="button">
+                <span>Register Now</span>
+                <i class="fas fa-spinner loading"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function updateFee() {
+            const eventSelect = document.getElementById("event");
+            const feeDisplay = document.getElementById("eventFee");
+            const selectedOption = eventSelect.options[eventSelect.selectedIndex];
+            const eventFee = selectedOption.getAttribute("data-fee");
+
+            if (eventFee) {
+                feeDisplay.innerHTML = `Registration Fee: ₹${eventFee}`;
+                feeDisplay.classList.add('show');
+            } else {
+                feeDisplay.classList.remove('show');
+            }
+        }
+
+        // Form validation and submission handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            const button = this.querySelector('button[type="submit"]');
+            const loadingIcon = button.querySelector('.loading');
+            const buttonText = button.querySelector('span');
+
+            // Show loading state
+            loadingIcon.style.display = 'inline-block';
+            buttonText.textContent = 'Processing...';
+            button.disabled = true;
+
+            // Submit form normally (since we're using server-side handling)
+        });
+
+        // Real-time validation
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('input', function() {
+                const errorMessage = this.nextElementSibling;
+                if (this.validity.valid) {
+                    errorMessage.style.display = 'none';
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

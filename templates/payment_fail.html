@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <link rel="stylesheet" href="static/css/payment_fail.css">
+    <script>
+        // Retrieve failure reason from the URL query parameter (if provided)
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const failureReason = getQueryParam("reason") || "Your payment could not be processed.";
+            document.getElementById("failure-message").innerText = failureReason;
+
+            // Optional: Auto-redirect after 10 seconds
+            setTimeout(() => {
+                window.location.href = "/registration";
+            }, 10000); // Redirect in 10 seconds
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">❌</div>
+        <h1>Payment Failed</h1>
+        <p id="failure-message">We're sorry, but your payment could not be processed.</p>
+        <p>Please try again or contact support if the problem persists.</p>
+        <div class="button-group">
+            <a href="/registration" class="button">Try Again</a>
+            <a href="/" class="button secondary">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

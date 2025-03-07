@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Contact Page</title>
+    <link rel="icon" href="static/images/eye logo.png" type="image/icon type">
+    <link rel="stylesheet" href="static/css/footer.css">
+    <link rel="stylesheet" href="static/css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('events') }}" >Events</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('portfolio') }}">Portfolio</a>
+        <a href="{{ url_for('aboutus') }}">About Us</a>
+        <a href="{{ url_for('contactus') }}" class="active">Contact Us</a>
+    </div>
+
+    <span class="menu-btn" onclick="openNav()">&#9776;</span>
+    
+    <div class="container">
+</br></br>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/hod.JPG') }}" alt="Convenor">
+            <h3>Dr M Ramasekhara Reddy</h3>
+            <p>Convenor</p>
+            <p>📞 +91 98765 43210</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/sridhar.JPG') }}" alt="Faculty Coordinator">
+            <h3>Dr S Sridhar</h3>
+            <p>Faculty Coordinator</p>
+            <p>📞 +91 98765 43211</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/rathaiah.jpeg') }}" alt="Faculty Co-coordinator">
+            <h3>Dr M Rathaiah</h3>
+            <p>Faculty Co-Coordinator</p>
+            <p>📞 +91 9493518937</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/manasa.jpeg') }}" alt="Faculty C0-coordinator">
+            <h3>Smt. Y Manasa</h3>
+            <p>Faculty Co-Coordinator</p>
+            <p>📞 +91 9346246451</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/rajesh.jpeg') }}" alt="Coordinator 1">
+            <h3>L. Rajesh Kumar Reddy</h3>
+            <p>Student Coordinator</p>
+            <p>📞 +91 8977269983</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/kavya.jpeg') }}" alt="Coordinator 2">
+            <h3>P. Kavya Sree</h3>
+            <p>Student Coordinator</p>
+            <p>📞 +91 8096990897</p>
+        </div>
+    </div>
+
+    <div class="tech-coordinators">
+        <h2>Technical Coordinators</h2>
+        <div class="tech-grid">
+            <div>
+                <h3>Sunil Kumar Reddy Yaparla</h3>
+                <p>📞 +91 9392459171</p>
+            </div>
+            <div>
+                <h3>Bhairava Veeramallu</h3>
+                <p>📞 +91 9398670714</p>
+            </div>
+            <div>
+                <h3>Srikanth Gujjala</h3>
+                <p>📞 +91 6303783807</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="social-links">
+            <a href="mailto:sunilreddyyaparla@gmail.com"><i class="fas fa-envelope"></i> eye2k25@gmail.com</a>
+            <a href="https://www.instagram.com/eye2k25?igsh=MTZ5MHJyYWRoZno3bA=="><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="http://www.linkedin.com/in/eye2k25"><i class="fab fa-linkedin"></i> Linkedin</a>
+            <a href="https://www.youtube.com/@EYE2K25"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.facebook.com/Eye2K25"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://whatsapp.com/channel/0029Vb6hHGWFSAt9FMzA0a3i"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>        
+    </div>
+    
+    
+    <!-- New designer text -->
+    <div class="designer-text" style="text-align: center; color: white; margin-top: 20px;">
+        Designed and Developed by Sunil Kumar Reddy Yaparla 
+    </div>
+</div>
+</br></br></br></br>
+<div class="footer-container">
+    <div class="footer-content">
+        <div class="footer-text">
+            &copy; Department of Electrical and Electronics Engineering
+        </div>
+        <div class="developer-text">
+            All  Rights are  Reserved
+        </div>
+    </div>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementsByClassName("main-content")[0].style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementsByClassName("main-content")[0].style.marginLeft = "0";
+    }
+</script>
+</body>
+</html>

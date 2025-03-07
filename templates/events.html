@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Fest Events</title>
+    <link rel="icon" href="static/images/eye logo.png" type="image/icon type">
+    <link rel="stylesheet" href="static/css/events.css">
+    <link rel="stylesheet" href="static/css/footer.css">
+</head>
+<body style="background-image: url('static/images/back.png');">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('events') }}" class="active">Events</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('portfolio') }}">Portfolio</a>
+        <a href="{{ url_for('aboutus') }}">About Us</a>
+        <a href="{{ url_for('contactus') }}">Contact Us</a>
+    </div>
+
+    <span class="menu-btn" onclick="openNav()">&#9776;</span>
+<!-- Technical Section -->
+    <div class="main-content">
+        <h1 class="dynamic-heading">Technical Events</h1>
+
+        <!-- Project Expo -->
+        <div class="event-container" onclick="openModal('projectExpoModal')">
+            <h3>Project Expo</h3>
+            <img src="{{ url_for('static', filename='images/project.png') }}" alt="Project Expo" class="event-image">
+            <div class="event-details">
+                <p><strong>View Details</strong></p>
+            </div>
+        </div>
+
+        <!-- Circuit Hunt -->
+        <div class="event-container" onclick="openModal('circuitModal')">
+            <h3>Circuit Hunt</h3>
+            <img src="{{ url_for('static', filename='images/circuit.png') }}" alt="Circuit Hunt" class="event-image">
+            <div class="event-details">
+                <p><strong>View Details</strong></p>
+            </div>
+        </div>
+
+        <!-- Technical Quiz -->
+        <div class="event-container" onclick="openModal('quizModal')">
+            <h3>Technical Quiz</h3>
+            <img src="{{ url_for('static', filename='images/quiz.png') }}" alt="Technical Quiz" class="event-image">
+            <div class="event-details">
+                <p><strong>View Details</strong></p>
+            </div>
+        </div>
+
+        <!-- Poster Presentation -->
+        <div class="event-container" onclick="openModal('posterModal')">
+            <h3>Poster Presentation</h3>
+            <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster Presentation" class="event-image">
+            <div class="event-details">
+                <p><strong>View Details</strong></p>
+            </div>
+        </div>
+        <!-- Paper Presentation -->
+        <div class="event-container" onclick="openModal('paperModal')">
+            <h3>Paper Presentation</h3>
+            <img src="{{ url_for('static', filename='images/paper.png') }}" alt="Poster Presentation" class="event-image">
+        </br></br>
+            <div class="event-details">
+                <p><strong>View Details</strong></p>
+            </div>
+        </div>
+
+    <!-- Workshop Event -->
+    <div class="event-container" onclick="openModal('workshopModal')">
+        <h3>Workshop: Neuro-Fuzzy Applications</h3>
+        <img src="{{ url_for('static', filename='images/workshop.png') }}" alt="Workshop" class="event-image">
+    </br></br></br>
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+
+    </div>
+
+        <!-- Modals -->
+        <!-- Project Expo Modal -->
+        <div id="projectExpoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('projectExpoModal')">&times;</span>
+                <div class="modal-header">
+                    <h2>Project Expo</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img src="{{ url_for('static', filename='images/project.png') }}" alt="Project Expo">
+                    </div>
+                    <div class="modal-details">
+                        <h3>Event Description</h3>
+                        <p>Showcase your innovative projects and engineering solutions. Present your working models, prototypes, and research projects to industry experts and academia.</p>
+                        
+                        <h3>Guidelines</h3>
+                        <ul>
+                            <li>Teams of maximum 4 members allowed</li>
+                            <li>Project should be a working model/prototype</li>
+                            <li>Mention your team name  in the 'name' field after your name while registering if you have team</li>
+                        </ul>
+                        <h3>Prize</h3>
+                        <div class="modal-prize-section">
+                            <p>Prize money: ₹3,000</p>
+                            <p>Winning and Participation certificates</p>
+                        </div>
+
+                        <h3>Registration Fee</h3>
+                        <div class="modal-registration">
+                            <p><strong>Online:</strong> ₹500 per candidate</p>
+                            <p><strong>Offline:</strong> ₹650 per candidate</p>
+                        </div>
+                        <h3>Note</h3>
+                        <ul>
+                            <li>Lunch will be provided for the registered candidates</li>
+                            <li>Accommodation will be provided upon payment of the applicable charges</li>
+                        </ul>
+                        <a href="{{ url_for('registration', event='Project Expo') }}" class="modal-register-btn">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <!-- Circuit Hunt Modal -->
+        <div id="circuitModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('circuitModal')">&times;</span>
+                <div class="modal-header">
+                    <h2>Circuit Hunt</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img src="{{ url_for('static', filename='images/circuit.png') }}" alt="Circuit Hunt">
+                    </div>
+                    <div class="modal-details">
+                        <h3>Event Description</h3>
+                        <p>Test your circuit knowledge and problem-solving skills in this exciting circuit hunt. Solve circuit-based puzzles and challenges to reach the finish line.</p>
+                        
+                        <h3>Guidelines</h3>
+                        <ul>
+                            <li>Individual Participation</li>
+                            <li>Time-based completion</li>
+                            <li>Basic requirements will be provided</li>
+                        </ul>
+
+                        <h3>Prize </h3>
+                        <div class="modal-prize-section">
+                            <p>Prize money: ₹1,500</p>
+                            <p>Winning and Participation certificates</p>
+                        </div>
+
+                        <h3>Registration Fee</h3>
+                        <div class="modal-registration">
+                            <p><strong>Online:</strong> ₹300</p>
+                            <p><strong>Offline:</strong> ₹400</p>
+                        </div>
+                        <h3>Note</h3>
+                        <ul>
+                            <li>Lunch will be provided for the registered candidates</li>
+                            <li>Accommodation will be provided upon payment of the applicable charges</li>
+                        </ul>
+                        <a href="{{ url_for('registration', event='Circuit Hunt') }}" class="modal-register-btn">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Quiz Modal -->
+        <div id="quizModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('quizModal')">&times;</span>
+                <div class="modal-header">
+                    <h2>Technical Quiz</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img src="{{ url_for('static', filename='images/quiz.png') }}" alt="Technical Quiz">
+                    </div>
+                    <div class="modal-details">
+                        <h3>Event Description</h3>
+                        <p>Put your technical knowledge to the test in this comprehensive quiz covering electrical, electronics and engineering concepts.</p>
+                        
+                        <h3>Guidelines</h3>
+                        <ul>
+                            <li>Team of maximum 4 members are allowed</li>
+                            <li>Time-based completion</li>
+                            <li>Consistes of three rounds. Difficulty level changes from round to round</li>
+                            <li>Mention your team name  in the 'name' field after your name while registering</li>
+                        </ul>
+
+                        <h3>Prize </h3>
+                        <div class="modal-prize-section">
+                            <p>Prize money: ₹3,000</p>
+                            <p>Winning and Participation certificates</p>
+                        </div>
+
+                        <h3>Registration Fee</h3>
+                        <div class="modal-registration">
+                            <p><strong>Online:</strong> ₹300 per candidate</p>
+                            <p><strong>Offline:</strong> ₹400 per candidate</p>
+                        </div>
+                        <h3>Note</h3>
+                        <ul>
+                            <li>Lunch will be provided for the registered candidates</li>
+                            <li>Accommodation will be provided upon payment of the applicable charges</li>
+                        </ul>
+                        <a href="{{ url_for('registration', event='Technical Quiz') }}" class="modal-register-btn">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Poster Presentation Modal -->
+        <div id="posterModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('posterModal')">&times;</span>
+                <div class="modal-header">
+                    <h2>Poster Presentation</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster Presentation">
+                    </div>
+                    <div class="modal-details">
+                        <h3>Event Description</h3>
+                        <p>Design and present creative posters on technical topics. Showcase your skills and technical knowledge through innovative poster designs.</p>
+                        
+                        <h3>Guidelines</h3>
+                        <ul>
+                            <li>Individual participation</li>
+                            <li>5 minutes presentation time</li>
+                        </ul>
+
+                        <h3>Prize Money</h3>
+                        <div class="modal-prize-section">
+                            <p>3rd Prize: ₹3,000</p>
+                        </div>
+
+                        <h3>Registration Fee</h3>
+                        <div class="modal-registration">
+                            <p><strong>Online:</strong> ₹500</p>
+                            <p><strong>Offline:</strong> ₹650</p>
+                        </div>
+                        <h3>Note</h3>
+                        <ul>
+                            <li>Lunch will be provided for the registered candidates</li>
+                            <li>Accommodation will be provided upon payment of the applicable charges</li>
+                        </ul>
+                        <a href="{{ url_for('registration', event='Poster Presentation') }}" class="modal-register-btn">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Paper Presentation Modal -->
+    <div id="paperModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('paperModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Paper Presentation</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img src="{{ url_for('static', filename='images/paper.png') }}" alt="Paper Presentation">
+                </div>
+                <div class="modal-details">
+                    <h3>Event Description</h3>
+                    <p>Design and present creative presentation on technical topics. Showcase your  skills and technical knowledge through innovative paper designs.</p>
+                    
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>Individual participation</li>
+                        <li>5 minutes presentation time</li>
+                    </ul>
+
+                    <h3>Prize</h3>
+                    <div class="modal-prize-section">
+                        <p>Prize money: ₹2,000</p>
+                    </div>
+                    <h3>Registration Fee</h3>
+                    <div class="modal-registration">
+                        <p><strong>Online:</strong> ₹500</p>
+                        <p><strong>Offline:</strong> ₹650</p>
+                    </div>
+                    <h3>Note</h3>
+                        <ul>
+                            <li>Lunch will be provided for the registered candidates</li>
+                            <li>Accommodation will be provided upon payment of the applicable charges</li>
+                        </ul>
+                    <a href="{{ url_for('registration', event='Paper Presentation') }}" class="modal-register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Workshop Modal -->
+<div id="workshopModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('workshopModal')">&times;</span>
+        <div class="modal-header">
+            <h2>Workshop: Neuro-Fuzzy Applications</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="{{ url_for('static', filename='images/workshop.png') }}" alt="Workshop">
+            </div>
+            <div class="modal-details">
+                <h3>Event Description</h3>
+                <p>Join us for an in-depth technical workshop on <strong>Neuro-Fuzzy Applications</strong> using MATLAB and Python, conducted by <strong>Arkance Company</strong>. This session will cover practical implementations of neuro-fuzzy systems, bridging artificial intelligence and fuzzy logic.</p>
+
+                <h3>Guidelines</h3>
+                <ul>
+                    <li>Open to all students and professionals interested in AI and machine learning</li>
+                    <li>Hands-on sessions with real-world applications using MATLAB and Python</li>
+                    <li>Certificates provided upon completion</li>
+                </ul>
+
+                <h3>Registration Fee</h3>
+                <div class="modal-registration">
+                    <p><strong>Online:</strong> ₹500</p>
+                    <p><strong>Offline:</strong> ₹650</p>
+                </div>
+
+                <h3>Note</h3>
+                <ul>
+                    <li>Lunch will be provided for registered candidates</li>
+                    <li>Accommodation available upon payment of applicable charges</li>
+                </ul>
+
+                <a href="{{ url_for('registration', event='Workshop') }}" class="modal-register-btn">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Non Technical Section -->
+<div class="main-content">
+    <h1 class="dynamic-heading">Non Technical Events</h1>
+
+    <!-- Chess -->
+    <div class="event-container" onclick="openModal('chess')">
+        <h3>Chess</h3>
+        <img src="{{ url_for('static', filename='images/chess.png') }}" alt="chess" class="event-image">
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+    </div>
+
+    <!-- Fastest Fingers First -->
+    <div class="event-container" onclick="openModal('fastestfingersfirst')">
+        <h3>Fastest Fingers First</h3>
+        <img src="{{ url_for('static', filename='images/typing.png') }}" alt="Fastest Fingers First" class="event-image">
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+    </div>
+
+    <!-- Photography -->
+    <div class="event-container" onclick="openModal('photography')">
+        <h3>Photography</h3>
+        <img src="{{ url_for('static', filename='images/photography.png') }}" alt="Photography" class="event-image">
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+    </div>
+
+    <!--Drawing-->
+    <div class="event-container" onclick="openModal('drawing')">
+        <h3>Drawing</h3>
+        <img src="{{ url_for('static', filename='images/drawing.png') }}" alt="Drawing" class="event-image">
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+    </div>
+    <!-- MEME -->
+    <div class="event-container" onclick="openModal('meme')">
+        <h3>MEME</h3>
+        <img src="{{ url_for('static', filename='images/meme.png') }}" alt="MEME" class="event-image">
+    
+        <div class="event-details">
+            <p><strong>View Details</strong></p>
+        </div>
+    </div>
+
+<!-- Free Fire -->
+<div class="event-container" onclick="openModal('freefire')">
+    <h3>Free Fire</h3>
+    <img src="{{ url_for('static', filename='images/freefire.png') }}" alt="Free Fire" class="event-image">
+    <div class="event-details">
+        <p><strong>View Details</strong></p>
+    </div>
+</div>
+
+    <!-- Modals -->
+    <!-- Chess Modal -->
+    <div id="chess" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('chess')">&times;</span>
+            <div class="modal-header">
+                <h2>Chess</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img src="{{ url_for('static', filename='images/chess.png') }}" alt="Chess">
+                </div>
+                <div class="modal-details">
+                    <h3>Event Description</h3>
+                    <p>Take part in our Chess Tournament and put your strategic thinking to the test. 
+                        Open to players of all levels, this event lets you compete in friendly matches, learn new tactics, and meet other chess enthusiasts. 
+                        Whether you're playing for fun or aiming to win, it's a great way to enjoy the game.</p>
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>Player must install LICHESS to play the tournament</li>
+                        <li>Time duration : 1hr</li>
+                        <li>- Player will be automatically paired and points will be alloted as
+                            <p>- Win   : 2 points</p>
+                            <p>- Draw  : 1 points</p>
+                            <P>- Loss  : 0 points</P>
+                        </li>
+                        <li>Player with the maximum points will be announced as the tournament winner.</li>
+                        <li>Every player has to make an account in leeches before starting the game.</li>
+                    </ul>
+                    <h3>Coordinators</h3>
+                    <div class="modal-prize-section">
+                        <ul>
+                            <li>S Irfan : 7981300766</li>
+                            <li>S Sameer : 9347629855</li>
+                        </ul>
+                    </div>
+                    <h3>Prize Money</h3>
+                    <div class="modal-prize-section">
+                        <p>1st Prize: ₹500</p>
+                        <p>2nd Prize: ₹350</p>
+                        <p>Note: Prize money increases if registrations are more</p>
+                    </div>
+
+                    <h3>Registration Fee</h3>
+                    <div class="modal-registration">
+                        <p><strong>Online:</strong> ₹50</p>
+                        <p><strong>Offline:</strong> ₹75</p>
+                    </div>
+
+                    <a href="{{ url_for('registration', event='Chess') }}" class="modal-register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- Fastest Fingers First Modal -->
+    <div id="fastestfingersfirst" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('fastestfingersfirst')">&times;</span>
+            <div class="modal-header">
+                <h2>Fastest Fingers First</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img src="{{ url_for('static', filename='images/typing.png') }}" alt="Fastest Fingers First">
+                </div>
+                <div class="modal-details">
+                    <h3>Event Description</h3>
+                    <p>🔥 Fastest Finger First – Speed Meets Accuracy! 🔥
+
+                        Think you're the fastest typist? Prove it! Type fast, stay accurate, and finish first in this high-speed showdown. 
+                        Everyone types the same text, and only the sharpest fingers will claim victory!</p>
+                    
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>🏆 1-Minute Battle</li>
+                        <li>💻 Online Platform</li>
+                        <li>⚡ Speed & Accuracy Decide the Winner</li>
+                        <li>Finish typing? Raise your hand! The fastest, most precise typist takes the crown.</li>
+                    </ul>
+                    <h3>Coordinators</h3>
+                    <div class="modal-prize-section">
+                        <ul>
+                            <li>S Irfan : 7981300766</li>
+                        </ul>
+                    </div>
+                    <h3>Prize Money</h3>
+                    <div class="modal-prize-section">
+                        <p>₹1,000</p>
+                        <p>Note: Prize money increases if registrations are more</p>
+                    </div>
+
+                    <h3>Registration Fee</h3>
+                    <div class="modal-registration">
+                        <p><strong>Online:</strong> ₹75</p>
+                        <p><strong>Offline:</strong> ₹100</p>
+                    </div>
+                    <a href="{{ url_for('registration', event='Fastest Fingers First') }}" class="modal-register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- photography Modal -->
+    <div id="photography" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('photography')">&times;</span>
+            <div class="modal-header">
+                <h2>Photography</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img src="{{ url_for('static', filename='images/photography.png') }}" alt="Technical Quiz">
+                </div>
+                <div class="modal-details">
+                    <h3>Event Description</h3>
+                    <p>Unleash your creativity and capture an epic moment! The Epic Photography Contest invites all photography enthusiasts to showcase their 
+                        talent by clicking a stunning photo and uploading to our insta page.</p>
+                    
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>Upload it to the drive link that will provide before the contest starts</li>
+                        <li>Upload your epic shot along with your payment screenshot in a folder titled by your name</li>
+                        <li>🏅 Winner Selection: The photo with the most likes wins!</li>
+                        <li>Likes will be counted until specified deadline & time zone.</li>
+                        <li>Only original photos taken by the participant are allowed</li>
+                    </ul>
+                    <h3>Coordinators</h3>
+                    <div class="modal-prize-section">
+                        <ul>
+                            <li>S Mehaboob Basha : 8897327514</li>
+                            <li>S B Shaguftha Anjum : 6305410147</li>
+                        </ul>
+                    </div>
+                    <h3>Prize Money</h3>
+                    <div class="modal-prize-section">
+                        <p>1st Prize: ₹700</p>
+                        <p>2nd Prize: ₹500</p>
+                    </div>
+
+                    <h3>Registration Fee</h3>
+                    <div class="modal-registration">
+                        <p> ₹50 per candidate</p>
+                    </div>
+
+                    <a href="{{ url_for('registration', event='Photography') }}" class="modal-register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Drawing -->
+    <div id="drawing" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('drawing')">&times;</span>
+            <div class="modal-header">
+                <h2>Drawing</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img src="{{ url_for('static', filename='images/drawing.png') }}" alt="Drawing">
+                </div>
+                <div class="modal-details">
+                    <h3>Event Description</h3>
+                    <p>Unleash your creativity at Creative Canvas, an engaging drawing event designed for artists of all skill levels! 
+                        Whether you're a seasoned illustrator or just starting your artistic journey, this event offers a welcoming space to express yourself through art.</p>
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>Upload it to the drive link that will provide before the contest starts</li>
+                        <li>Upload your epic drawing along with your payment screenshot in a folder titled by your name</li>
+                        <li>🏅 Winner Selection: The photo with the most likes wins!</li>
+                        <li>Likes will be counted until specified deadline & time zone.</li>
+                    </ul>
+                    <h3>Coordinators</h3>
+                    <div class="modal-prize-section">
+                        <ul>
+                            <li>S B Shaguftha Anjum : 6305410147</li>
+                            <li>P Kavya Sree : 8096990897</li>
+                        </ul>
+                    </div>
+                    <h3>Prize Money</h3>
+                    <div class="modal-prize-section">
+                        <p>Prize: ₹500</p>
+                    </div>
+
+                    <h3>Registration Fee</h3>
+                    <div class="modal-registration">
+                        <p>₹50 per candidate</p>
+                    </div>
+
+                    <a href="{{ url_for('registration', event='Drawing') }}" class="modal-register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MEME modal -->
+<div id="meme" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('meme')">&times;</span>
+        <div class="modal-header">
+            <h2>MEME</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="{{ url_for('static', filename='images/meme.png') }}" alt="MEME">
+            </div>
+            <div class="modal-details">
+                <h3>Event Description</h3>
+                <p>Get ready to tickle funny bones and go viral! Our Meme Contest is your chance to showcase your humor, creativity, and wit. 
+                    Create hilarious, relatable, and original memes that can make everyone laugh out loud! 🎉</p>
+                <h3>Guidelines</h3>
+                <ul>
+                    <li>Originality is Key – Your meme must be unique and not copied from existing ones. 🚫📸</li>
+                    <li>Keep It Clean – No offensive, inappropriate, or hateful content allowed. 🚨</li>
+                    <li>Judging Criteria – Humor, creativity, originality, and relatability! 🏆</li>
+                </ul>
+                <h3>Coordinators</h3>
+                <div class="modal-prize-section">
+                    <ul>
+                        <li>C Venu     : 9390637398</li>
+                        <li>G Srikanth : 6303783807</li>
+                    </ul>
+                </div>
+                <h3>Prize Money</h3>
+                <div class="modal-prize-section">
+                    <p>₹500</p>
+                </div>
+
+                <h3>Registration Fee</h3>
+                <div class="modal-registration">
+                    <p>₹50 per candidate</p>
+                </div>
+
+                <a href="{{ url_for('registration', event='MEME') }}" class="modal-register-btn">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Free Fire Modal -->
+<div id="freefire" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('freefire')">&times;</span>
+        <div class="modal-header">
+            <h2>Free Fire</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="{{ url_for('static', filename='images/freefire.png') }}" alt="Free Fire">
+            </div>
+            <div class="modal-details">
+                <h3>Event Description</h3>
+                <p>* The tournament will feature competitive Free Fire matches, either in squad or solo formats, held within custom rooms to ensure controlled gameplay.
+                 * The event will adhere to established rules and guidelines to maintain fairness and sportsmanship.</p>
+                <h3>Guidelines</h3>
+                <ul>
+                    <li> Game Format: Choose between squad (4v4) </li>
+                    <li>Specify team composition and any restrictions.</li>
+                    <li> Strictly prohibit cheating and hacking.</li>
+                </ul>
+                <h3>Coordinators</h3>
+                <div class="modal-prize-section">
+                    <ul>
+                        <li>C Pavan Kumar : 8125740319</li>
+                        <li>R Sasi Kiran  : 7569357207</li>
+                    </ul>
+                </div>
+                <h3>Prize Money</h3>
+                <div class="modal-prize-section">
+                    <p>₹1,000</p>
+                    <p>Note: Prize money increases if registrations are more</p>
+                </div>
+
+                <h3>Registration Fee</h3>
+                <div class="modal-registration">
+                    <p><strong>Online : </strong>₹200 per team</p>
+                    <p><strong>Offline : </strong>₹250 per team</p>
+                </div>
+
+                <a href="{{ url_for('registration', event='Free Fire') }}" class="modal-register-btn">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-text">&copy; Department of Electrical and Electronics Engineering</div>
+            <div class="developer-text">All Rights are Reserved</div>
+        </div>
+    </div>
+</br></br>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementsByClassName("main-content")[0].style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementsByClassName("main-content")[0].style.marginLeft = "0";
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>
