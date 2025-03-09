@@ -277,7 +277,7 @@ h1 {
     
     .slideshow-container {
         width: 98%;
-        height: 30vh;
+        height: 25vh;
     }
     
     .gallery-header {
@@ -326,7 +326,7 @@ h1 {
 @media screen and (max-width: 375px) {
     .slideshow-container {
         width: 98%;
-        height: 30vh;
+        height: 25vh;
     }
     
     .gallery-header {
