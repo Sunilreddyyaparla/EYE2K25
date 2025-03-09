@@ -24,6 +24,21 @@
             <div id="timer">Time Remaining: 5:00</div>
         </div>
 
+        <!-- Checkbox to show alternative QR -->
+        <div class="alternative-qr">
+            <label>
+                <input type="checkbox" id="showAlternativeQR"> Show Alternative QR Code
+            </label>
+        </div>
+
+        <!-- Alternative QR Image and Note (Initially Hidden) -->
+        <div id="alternativeQRContainer" style="display: none; text-align: center; margin-top: 15px;">
+            <img src="static/images/qrcode.jpeg" alt="Alternative QR Code" width="250">
+            <p style="color: red; font-weight: bold;">
+                If QR is not generated, use this QR and enter the amount according to the event.
+            </p>
+        </div>
+
         <form id="transactionForm">
             <select name="payment_app" id="payment_app" class="input-field" required>
                 <option value="">Select Payment App Used</option>
@@ -35,17 +50,14 @@
             <div class="error-message" id="payment_app_error"></div>
 
             <div class="other-upi-container" id="other_upi_container">
-                <input type="text" name="other_upi_app" id="other_upi_app" 
-                       class="input-field" placeholder="Enter UPI App Name">
+                <input type="text" name="other_upi_app" id="other_upi_app" class="input-field" placeholder="Enter UPI App Name">
                 <div class="error-message" id="other_upi_error"></div>
             </div>
             
-            <input type="text" name="upi_reference" id="upi_reference" 
-                   class="input-field" placeholder="Enter UPI Reference Number" required>
+            <input type="text" name="upi_reference" id="upi_reference" class="input-field" placeholder="Enter UPI Reference Number" required>
             <div class="error-message" id="upi_reference_error"></div>
 
-            <input type="text" name="confirm_reference" id="confirm_reference" 
-                   class="input-field" placeholder="Confirm UPI Reference Number" required>
+            <input type="text" name="confirm_reference" id="confirm_reference" class="input-field" placeholder="Confirm UPI Reference Number" required>
             <div class="error-message" id="confirm_reference_error"></div>
             
             <button type="submit" class="button">Confirm Payment</button>
@@ -67,17 +79,14 @@
             function startTimer() {
                 countdownTimer = setInterval(function() {
                     remainingTime--;
-                    
                     $('#timer').text(`Time Remaining: ${formatTime(remainingTime)}`);
-                    
+
                     if (remainingTime <= 0) {
                         clearInterval(countdownTimer);
-                        // Redirect to Flask route for payment failure
                         if (!window.paymentSubmitted) {
-                            window.location.href = '/payment_failure';  // Correct Flask route
+                            window.location.href = '/payment_failure';
                         }
                     }
-
                 }, 1000);
             }
 
@@ -93,24 +102,31 @@
                 success: function(response) {
                     if (response.qr_code) {
                         $('#qrCode').attr('src', 'data:image/png;base64,' + response.qr_code);
-                        startTimer(); // Start timer after QR code generation
+                        startTimer();
                     } else {
                         alert('Error generating QR code: ' + (response.error || 'Unknown error'));
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function() {
                     alert('Failed to generate QR code. Please refresh the page.');
-                    console.error('QR code generation failed:', error);
                 },
                 complete: function() {
                     $('.loading').hide();
                 }
             });
 
-            // Handle payment app selection
+            // Show/Hide Alternative QR
+            $('#showAlternativeQR').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#alternativeQRContainer').slideDown();
+                } else {
+                    $('#alternativeQRContainer').slideUp();
+                }
+            });
+
+            // Handle Payment App Selection
             $('#payment_app').on('change', function() {
-                const selectedApp = $(this).val();
-                if (selectedApp === 'Other UPI') {
+                if ($(this).val() === 'Other UPI') {
                     $('#other_upi_container').slideDown();
                     $('#other_upi_app').prop('required', true);
                 } else {
@@ -119,60 +135,44 @@
                 }
             });
 
-            // Real-time UPI reference validation
+            // Validate UPI Reference Confirmation
             $('#confirm_reference').on('input', function() {
                 const reference = $('#upi_reference').val();
                 const confirmReference = $(this).val();
-                
-                if (reference && confirmReference) {
-                    if (reference !== confirmReference) {
-                        $('#confirm_reference_error')
-                            .text('UPI reference numbers do not match')
-                            .show();
-                    } else {
-                        $('#confirm_reference_error').hide();
-                    }
+                if (reference && confirmReference && reference !== confirmReference) {
+                    $('#confirm_reference_error').text('UPI reference numbers do not match').show();
+                } else {
+                    $('#confirm_reference_error').hide();
                 }
             });
 
-            // Form submission
+            // Handle Form Submission
             $('#transactionForm').on('submit', function(e) {
                 e.preventDefault();
                 let isValid = true;
-                
-                // Clear previous errors
                 $('.error-message').hide();
 
-                // Validate payment app
                 const paymentApp = $('#payment_app').val();
                 if (!paymentApp) {
                     $('#payment_app_error').text('Please select a payment app').show();
                     isValid = false;
                 }
 
-                // Validate other UPI app name if selected
-                if (paymentApp === 'Other UPI') {
-                    const otherUpiApp = $('#other_upi_app').val().trim();
-                    if (!otherUpiApp) {
-                        $('#other_upi_error').text('Please enter the UPI app name').show();
-                        isValid = false;
-                    }
+                if (paymentApp === 'Other UPI' && !$('#other_upi_app').val().trim()) {
+                    $('#other_upi_error').text('Please enter the UPI app name').show();
+                    isValid = false;
                 }
 
-                // Validate UPI reference numbers
                 const reference = $('#upi_reference').val().trim();
                 const confirmReference = $('#confirm_reference').val().trim();
-
                 if (!reference) {
                     $('#upi_reference_error').text('Please enter the UPI reference number').show();
                     isValid = false;
                 }
-
                 if (!confirmReference) {
                     $('#confirm_reference_error').text('Please confirm the UPI reference number').show();
                     isValid = false;
                 }
-
                 if (reference && confirmReference && reference !== confirmReference) {
                     $('#confirm_reference_error').text('UPI reference numbers do not match').show();
                     isValid = false;
@@ -182,35 +182,20 @@
                     window.paymentSubmitted = true;
                     clearInterval(countdownTimer);
 
-                    const submitButton = $(this).find('button[type="submit"]');
-                    submitButton.prop('disabled', true).text('Processing...');
-                    
-                    const formData = $(this).serializeArray();
-                    
-                    // If 'Other UPI' is selected, ensure other_upi_app is included
-                    if (paymentApp === 'Other UPI') {
-                        formData.push({
-                            name: 'other_upi_app', 
-                            value: $('#other_upi_app').val().trim()
-                        });
-                    }
-                    
+                    const formData = $(this).serialize();
                     $.ajax({
                         url: '/submit_transaction',
                         method: 'POST',
-                        data: $.param(formData),
+                        data: formData,
                         success: function(response) {
                             if (response.status === 'success') {
                                 window.location.href = '/pay_success';
                             } else {
                                 alert(response.message || 'Transaction failed. Please try again.');
-                                submitButton.prop('disabled', false).text('Confirm Payment');
                             }
                         },
-                        error: function(xhr, status, error) {
-                            console.error('Transaction error:', error);
+                        error: function() {
                             alert('Transaction failed. Please try again or contact support.');
-                            submitButton.prop('disabled', false).text('Confirm Payment');
                         }
                     });
                 }
