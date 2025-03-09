@@ -1,159 +1,416 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-body { 
-    font-family: Arial, sans-serif; 
-    text-align: center; 
-    padding: 10px;
-    background-color: #f5f5f5;
-    line-height: 1.6;
-}
-.container { 
-    width: 100%; 
-    max-width: 500px; 
-    margin: auto; 
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    background-color: white;
-}
-h2 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-.qr-container {
-    margin: 15px auto;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-}
-#qrCode {
-    max-width: 100%;
-    height: auto;
-    margin: 15px auto;
-}
-.payment-details {
-    text-align: left;
-    margin: 15px 0;
-    padding: 12px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 0.9rem;
-}
-.input-field {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-}
-.button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 100%;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
-}
-.button:hover {
-    background-color: #45a049;
-}
-.button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-.loading, .error-message, #timer {
-    font-size: 0.9rem;
-    margin: 10px 0;
-}
-.error-message {
-    color: #dc3545;
-    text-align: left;
-}
-#timer {
-    font-weight: bold;
-    color: #333;
-}
-.other-upi-container {
-    display: none;
-    margin-top: 10px;
+    box-sizing: border-box;
 }
 
-/* Alternative QR Code */
-.alternative-qr {
-    margin-top: 10px;
-    text-align: center;
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgb(231, 117, 206), rgb(69, 220, 117), rgb(81, 163, 230));
+    background-size: cover;
 }
 
-#alternativeQRContainer {
-    display: none;
-    margin-top: 15px;
-    text-align: center;
+/* Side Navigation */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
 
-#alternativeQRContainer img {
-    width: 200px;
-    max-width: 100%;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-#alternativeQRContainer p {
-    font-size: 14px;
-    color: red;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-/* UPI Button */
-.upi-button {
-    display: block;
-    background: #008CBA;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    border-radius: 5px;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 16px;
-    margin: 15px 0;
-}
-.upi-button:hover {
-    background: #005f73;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
-/* Mobile Responsiveness */
-@media screen and (max-width: 480px) {
-    .container {
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #555;
+}
+.sidenav a.active {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding:2%;
+}
+
+.menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 101;
+    color: #fff;
+}
+
+.main-content {
+    transition: margin-left .5s;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Gallery Styles */
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 2pc;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 60vh;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    object-fit: cover;
+}
+
+
+.slide.active {
+    opacity: 1;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.image-gallery-container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 80px;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.footer-container {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 8px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+    height: auto;
+    min-height: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 3vw, 20px);
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.footer-text, .developer-text {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: clamp(11px, 2vw, 13px);
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Regular Media Queries - For Sidenav */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+/* Large Screens */
+@media screen and (min-width: 1200px) {
+    .image-gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+    }
+    
+    .slideshow-container {
+        height: 67vh;
+    }
+}
+
+/* Medium-Large Screens */
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+    .image-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .slideshow-container {
+        width: 97%;
+        height: 61vh;
+    }
+}
+
+/* Medium Screens */
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .slideshow-container {
+        width: 97%;
+        height:35vh;
+    }
+    
+    .gallery-header {
+        font-size: 24px;
+    }
+}
+
+/* Small Screens - Tablets */
+@media screen and (max-width: 767px) and (min-width: 577px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .slideshow-container {
+        width: 98%;
+        height: 35vh;
+    }
+    
+    .gallery-header {
+        font-size: 22px;
+    }
+    
+    .nav-btn {
+        padding: 8px 12px;
+    }
+}
+
+/* Extra Small Screens - Mobile */
+@media screen and (max-width: 576px) {
+    .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .slideshow-container {
+        width: 98%;
+        height: 34vh;
+    }
+    
+    .gallery-header {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .nav-btn {
+        padding: 6px 10px;
+    }
+    
+    .main-content {
         padding: 15px;
-        margin: auto 5px;
+        margin-bottom: 80px;
     }
-    h2 {
-        font-size: 1.3rem;
+    
+    .image-gallery-container {
+        padding: 15px;
     }
-    .payment-details {
-        font-size: 0.85rem;
+
+    /* Footer adjustments */
+    .footer-container {
+        padding: 8px 0;
+        height: auto;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    .footer-text, .developer-text {
+        flex: 0 0 auto;
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 2px 0;
+        font-size: 11px;
+        margin: 0;
+    }
+}
+
+/* Very Small Screens - Small Mobile */
+@media screen and (max-width: 375px) {
+    .slideshow-container {
+        height: 30vh;
+    }
+    
+    .gallery-header {
+        font-size: 18px;
+    }
+    
+    .main-content {
+        margin-bottom: 90px;
+    }
+
+    .footer-container {
+        padding: 6px 0;
+    }
+
+    .footer-text, .developer-text {
+        font-size: 10px;
+        padding: 2px 0;
+    }
+}
+
+/* Extra Small Devices */
+@media screen and (max-width: 320px) {
+    .slideshow-container {
+        height: 27vh;
+    }
+    
+    .main-content {
+        padding: 10px;
+        margin-bottom: 100px;
+    }
+    
+    .image-gallery-container {
         padding: 10px;
     }
-    .input-field, .button {
-        font-size: 0.95rem;
-        padding: 8px;
+
+    .footer-text, .developer-text {
+        line-height: 1.3;
     }
-    .qr-container p {
-        font-size: 0.9rem;
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .slideshow-container {
+        height: 80vh;
     }
-    .alternative-qr label {
-        font-size: 0.9rem;
+    
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 10px;
     }
-    #alternativeQRContainer img {
-        width: 180px;
+
+    .footer-text, .developer-text {
+        width: auto;
+        white-space: nowrap;
+    }
+}
+
+/* High Resolution Displays */
+@media screen and (min-width: 1400px) {
+    .image-gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 50px;
+    }
+    
+    .slideshow-container {
+        max-width: 1400px;
+        height: 75vh;
+    }
+}
+
+/* Print Media Query */
+@media print {
+    .sidenav,
+    .nav-btn,
+    .footer-container {
+        display: none;
+    }
+    
+    .slideshow-container {
+        break-inside: avoid;
+    }
+    
+    .image-gallery img {
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 }
