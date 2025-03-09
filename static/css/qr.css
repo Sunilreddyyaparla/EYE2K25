@@ -276,8 +276,8 @@ h1 {
     }
     
     .slideshow-container {
-        width: 98%;
-        height: 25vh;
+        width: 100%;
+        height: 30vh;
     }
     
     .gallery-header {
@@ -325,8 +325,8 @@ h1 {
 /* Very Small Screens - Small Mobile */
 @media screen and (max-width: 375px) {
     .slideshow-container {
-        width: 98%;
-        height: 25vh;
+        width: 100%;
+        height: 30vh;
     }
     
     .gallery-header {
