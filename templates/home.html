@@ -1,159 +1,122 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EYE 2K25 - Home</title>
+    <title>Image Slideshow</title>
     <link rel="icon" href="static/images/eye logo.png" type="image/icon type">
-    <link rel="stylesheet" href="static/css/home.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        
-    </style>
+    <link rel="stylesheet" href="static/css/gallery.css">
+    <link rel="stylesheet" href="static/css/footer.css">
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('events') }}">Events</a>
+        <a href="{{ url_for('gallery') }}" class="active">Gallery</a>
+        <a href="{{ url_for('portfolio') }}">Portfolio</a>
+        <a href="{{ url_for('aboutus') }}">About Us</a>
+        <a href="{{ url_for('contactus') }}">Contact Us</a>
+    </div>
 
-        class Component {
-            constructor(type) {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.type = type;
-                this.rotation = Math.random() * Math.PI * 2;
-                this.size = 20;
-            }
+    <span class="menu-btn" onclick="openNav()">&#9776;</span>
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.rotation += 0.01;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
-                ctx.strokeStyle = '#00ff00';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                if (this.type === 'resistor') {
-                    ctx.moveTo(-this.size, 0);
-                    for (let i = -this.size + 5; i < this.size; i += 5) {
-                        ctx.lineTo(i, (i % 10 === 0) ? 5 : -5);
-                    }
-                    ctx.lineTo(this.size, 0);
-                } else if (this.type === 'capacitor') {
-                    ctx.moveTo(-this.size, 0);
-                    ctx.lineTo(-5, 0);
-                    ctx.moveTo(-5, -10);
-                    ctx.lineTo(-5, 10);
-                    ctx.moveTo(5, -10);
-                    ctx.lineTo(5, 10);
-                    ctx.moveTo(5, 0);
-                    ctx.lineTo(this.size, 0);
-                } else if (this.type === 'ic') {
-                    ctx.strokeRect(-15, -10, 30, 20);
-                    for (let i = -10; i <= 10; i += 5) {
-                        ctx.moveTo(i, -10);
-                        ctx.lineTo(i, -15);
-                        ctx.moveTo(i, 10);
-                        ctx.lineTo(i, 15);
-                    }
-                } else if (this.type === 'diode') {
-                    ctx.moveTo(-this.size, 0);
-                    ctx.lineTo(-5, 0);
-                    ctx.lineTo(-5, -8);
-                    ctx.lineTo(5, 0);
-                    ctx.lineTo(-5, 8);
-                    ctx.lineTo(-5, 0);
-                    ctx.moveTo(5, -8);
-                    ctx.lineTo(5, 8);
-                    ctx.moveTo(5, 0);
-                    ctx.lineTo(this.size, 0);
-                }
-                ctx.stroke();
-                ctx.restore();
-            }
-        }
-
-        const componentTypes = ['resistor', 'capacitor', 'ic', 'diode'];
-        const components = Array.from({ length: 30 }, () => 
-            new Component(componentTypes[Math.floor(Math.random() * componentTypes.length)])
-        );
-
-        function animate() {
-            ctx.fillStyle = 'rgba(10, 25, 47, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            components.forEach(component => {
-                component.update();
-                component.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
-
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="{{ url_for('home') }}" class="active">Home</a>
-    <a href="{{ url_for('events') }}">Events</a>
-    <a href="{{ url_for('gallery') }}">Gallery</a>
-    <a href="{{ url_for('portfolio') }}">Portfolio</a>
-    <a href="{{ url_for('aboutus') }}">About Us</a>
-    <a href="{{ url_for('contactus') }}">Contact Us</a>
-</div>
-
-<span class="menu-btn" onclick="openNav()">&#9776;</span>
-
-<div class="main-content">
-    <h4 class="note">JNTUA College of Engineering Ananthapuramu, Department of EEE Presents</h4>
-    
-    <div class="container">
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='images/jntuacea.png') }}" alt="JNTUA Logo">
+    <div class="main-content">
+        <h1 class="gallery-header">Electrical Family</h1>
+        <div class="slideshow-container">
+            <img src="{{ url_for('static', filename='images/getgrp.jpeg') }}" alt="Slide 1" class="slide active">
+            <img src="{{ url_for('static', filename='images/3rd year grp.jpg') }}" alt="Slide 2" class="slide">
+            <img src="{{ url_for('static', filename='images/2ndgrp.jpeg') }}" alt="Slide 3" class="slide">
+            <img src="{{ url_for('static', filename='images/quiz.png') }}" alt="Slide 4" class="slide">
+            <button class="nav-btn prev-btn">&#10094;</button>
+            <button class="nav-btn next-btn">&#10095;</button>
         </div>
-        <div class="text-container">
-            <h1>EYE 2K25</h1>
-            <h4>- - - Electrify Your Education - - -</h4>
-            <h3>A National Level Technical Symposium</h3>
-            <button onclick="openNav()">Explore ⚡</button>
-        </div>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='images/eye logo.png') }}" alt="EYE Logo">
+        
+        <h1 class="gallery-header">Tech Fest Gallery</h1>
+        <div class="image-gallery-container">
+            <div class="image-gallery">
+                <img src="{{ url_for('static', filename='images/fest11.jpeg') }}" alt="Image 1">
+                <img src="{{ url_for('static', filename='images/finalswag.jpeg') }}" alt="Image 2">
+                <img src="{{ url_for('static', filename='images/first21.jpeg') }}" alt="Image 3">
+                <img src="{{ url_for('static', filename='images/srisiddu.jpg') }}" alt="Image 4">
+                <img src="{{ url_for('static', filename='images/getladies.JPG') }}" alt="Image 5">
+                <img src="{{ url_for('static', filename='images/batch12.jpg') }}" alt="Image 6">
+                <img src="{{ url_for('static', filename='images/finalgrp.jpg') }}" alt="Image 7">
+                <img src="{{ url_for('static', filename='images/getgrp2.jpeg') }}" alt="Image 8">
+                <img src="{{ url_for('static', filename='images/get1.JPG') }}" alt="Image 9">
+                <img src="{{ url_for('static', filename='images/getboys.JPG') }}" alt="Image 10">
+                <img src="{{ url_for('static', filename='images/girlsgrp.jpg') }}" alt="Image 11">
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Video Section -->
-<div class="video-section">
-    <h3 class="video-title">Teaser of EYE 2K25</h3>
-    <div class="video-container">
-        <div class="video-wrapper">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Sw2aiPpg790?si=T7elMbdi5_TuC-UU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-</br></br></br></br>
+</br>
 <div class="footer-container">
     <div class="footer-content">
-        <div class="footer-text">&copy; Department of Electrical and Electronics Engineering</div>
-        <div class="visitor-counter"><span>Visitors: </span><span class="counter">{{ visitor_count }}</span></div>
-        <div class="developer-text">All Rights Reserved</div>
+        <div class="footer-text">
+            &copy; Department of Electrical and Electronics Engineering
+        </div>
+        <div class="developer-text">
+            All  Rights are  Reserved
+        </div>
     </div>
 </div>
+    
+    <script>
+        // Navigation Functions
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementsByClassName("main-content")[0].style.marginLeft = "250px";
+        }
 
-<script>
-    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
-</script>
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementsByClassName("main-content")[0].style.marginLeft = "0";
+        }
+
+        // Slideshow Functions
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                currentSlide = (index + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlide();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlide();
+            });
+
+            function startAutoSlide() {
+                slideInterval = setInterval(nextSlide, 3000);
+            }
+
+            function resetAutoSlide() {
+                clearInterval(slideInterval);
+                startAutoSlide();
+            }
+
+            startAutoSlide();
+        });
+    </script>
 </body>
 </html>
