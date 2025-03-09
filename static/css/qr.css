@@ -87,6 +87,49 @@ h2 {
     margin-top: 10px;
 }
 
+/* Alternative QR Code */
+.alternative-qr {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#alternativeQRContainer {
+    display: none;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#alternativeQRContainer img {
+    width: 200px;
+    max-width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+#alternativeQRContainer p {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* UPI Button */
+.upi-button {
+    display: block;
+    background: #008CBA;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 15px 0;
+}
+.upi-button:hover {
+    background: #005f73;
+}
+
 /* Mobile Responsiveness */
 @media screen and (max-width: 480px) {
     .container {
@@ -106,5 +149,11 @@ h2 {
     }
     .qr-container p {
         font-size: 0.9rem;
+    }
+    .alternative-qr label {
+        font-size: 0.9rem;
+    }
+    #alternativeQRContainer img {
+        width: 180px;
     }
 }
