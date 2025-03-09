@@ -351,7 +351,7 @@ h1 {
 @media screen and (max-width: 320px) {
     .slideshow-container {
         height: 27vh;
-        width: 98%;
+        width: 100%;
     }
     
     .main-content {
