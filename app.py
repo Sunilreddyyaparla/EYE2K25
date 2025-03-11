@@ -7,6 +7,7 @@ from io import BytesIO
 import base64
 from flask_mail import Mail, Message
 from datetime import datetime 
+from flask import send_from_directory
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -32,7 +33,7 @@ NON_TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/rdn5i9dzptwbr"  # For non
 FEST_EVENTS = {
     # Technical Events
     "Project Expo": {"fee": 500, "category": "technical"},
-    "Paper Presentation": {"fee": 500, "category": "technical"},
+    "Hackathon": {"fee": 500, "category": "technical"},
     "Poster Presentation": {"fee": 500, "category": "technical"},
     "Technical Quiz": {"fee": 300, "category": "technical"},
     "Circuit Hunt": {"fee": 300, "category": "technical"},
@@ -46,6 +47,9 @@ FEST_EVENTS = {
     "MEME": {"fee": 50, "category": "non-technical"},
     "Free Fire": {"fee": 200, "category": "non-technical"}
 }
+@app.route('/googlexxxxx.html')
+def serve_verification_file():
+    return send_from_directory('.', 'googlexxxxx.html')
 
 @app.route('/')
 def home():
