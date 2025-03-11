@@ -40,7 +40,7 @@ FEST_EVENTS = {
     "Workshop": {"fee": 500, "category": "technical"},
     
     # Non-Technical Events
-    "Chess": {"fee": 75, "category": "non-technical"},
+    "Chess": {"fee": 50, "category": "non-technical"},
     "Fastest Fingers First": {"fee": 75, "category": "non-technical"},
     "Photography": {"fee": 50, "category": "non-technical"},
     "Drawing": {"fee": 50, "category": "non-technical"},
