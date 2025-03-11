@@ -51,19 +51,19 @@
             </div>
         </div>
 
-        <!-- Poster Presentation -->
+        <!-- Poster and Paper Presentation -->
         <div class="event-container" onclick="openModal('posterModal')">
-            <h3>Poster Presentation</h3>
-            <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster Presentation" class="event-image">
+            <h3>Poster and Paper Presentation</h3>
+            <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster and Paper Presentation" class="event-image">
             <div class="event-details">
                 <p><strong>View Details</strong></p>
             </div>
         </div>
-        <!-- Paper Presentation -->
-        <div class="event-container" onclick="openModal('paperModal')">
-            <h3>Paper Presentation</h3>
-            <img src="{{ url_for('static', filename='images/paper.png') }}" alt="Poster Presentation" class="event-image">
-        </br></br>
+        <!-- Hackathon -->
+        <div class="event-container" onclick="openModal('hackathon')">
+            <h3>Hackathon</h3>
+            <img src="{{ url_for('static', filename='images/hackathon.png') }}" alt="Hackathon" class="event-image">
+        </br></br></br></br>
             <div class="event-details">
                 <p><strong>View Details</strong></p>
             </div>
@@ -215,7 +215,7 @@
             </div>
         </div>
 
-        <!-- Poster Presentation Modal -->
+        <!-- Poster and Poster Presentation Modal -->
         <div id="posterModal" class="modal">
             <div class="modal-content">
                 <span class="close-modal" onclick="closeModal('posterModal')">&times;</span>
@@ -224,11 +224,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-image-container">
-                        <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster Presentation">
+                        <img src="{{ url_for('static', filename='images/Poster.png') }}" alt="Poster and Paper Presentation">
                     </div>
                     <div class="modal-details">
                         <h3>Event Description</h3>
-                        <p>Design and present creative posters on technical topics. Showcase your skills and technical knowledge through innovative poster designs.</p>
+                        <p>Design and present creative posters and Papers on technical topics. Showcase your skills and technical knowledge through innovative poster designs.</p>
                         
                         <h3>Guidelines</h3>
                         <ul>
@@ -238,7 +238,7 @@
 
                         <h3>Prize Money</h3>
                         <div class="modal-prize-section">
-                            <p>3rd Prize: ₹3,000</p>
+                            <p>Prize: ₹3,000</p>
                         </div>
 
                         <h3>Registration Fee</h3>
@@ -257,16 +257,16 @@
             </div>
         </div>
     </div>
-    <!-- Paper Presentation Modal -->
-    <div id="paperModal" class="modal">
+    <!-- Hackathon Modal -->
+    <div id="hackathon" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('paperModal')">&times;</span>
+            <span class="close-modal" onclick="closeModal('hackathon')">&times;</span>
             <div class="modal-header">
-                <h2>Paper Presentation</h2>
+                <h2>Hackathon</h2>
             </div>
             <div class="modal-body">
                 <div class="modal-image-container">
-                    <img src="{{ url_for('static', filename='images/paper.png') }}" alt="Paper Presentation">
+                    <img src="{{ url_for('static', filename='images/hackathon.png') }}" alt="Hackathon">
                 </div>
                 <div class="modal-details">
                     <h3>Event Description</h3>
@@ -292,7 +292,7 @@
                             <li>Lunch will be provided for the registered candidates</li>
                             <li>Accommodation will be provided upon payment of the applicable charges</li>
                         </ul>
-                    <a href="{{ url_for('registration', event='Paper Presentation') }}" class="modal-register-btn">Register Now</a>
+                    <a href="{{ url_for('registration', event='Hackathon') }}" class="modal-register-btn">Register Now</a>
                 </div>
             </div>
         </div>
@@ -435,8 +435,8 @@
                     </div>
                     <h3>Prize Money</h3>
                     <div class="modal-prize-section">
-                        <p>1st Prize: ₹500</p>
-                        <p>2nd Prize: ₹350</p>
+                        <p>1st Prize: ₹550</p>
+                        <p>2nd Prize: ₹300</p>
                         <p>Note: Prize money increases if registrations are more</p>
                     </div>
 
@@ -486,7 +486,7 @@
                     </div>
                     <h3>Prize Money</h3>
                     <div class="modal-prize-section">
-                        <p>₹1,000</p>
+                        <p>₹750</p>
                         <p>Note: Prize money increases if registrations are more</p>
                     </div>
 
