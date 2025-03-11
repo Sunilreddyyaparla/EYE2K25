@@ -49,7 +49,7 @@ FEST_EVENTS = {
 }
 @app.route('/googlexxxxx.html')
 def serve_verification_file():
-    return send_from_directory('.', 'googlexxxxx.html')
+    return send_from_directory('.', 'google12132244958a9137.html')
 
 @app.route('/')
 def home():
