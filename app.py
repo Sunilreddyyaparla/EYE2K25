@@ -37,7 +37,7 @@ FEST_EVENTS = {
     "Poster or Paper Presentation": {"fee": 300, "category": "technical"},
     "Technical Quiz": {"fee": 1000, "category": "technical"},
     "Circuit Hunt": {"fee": 300, "category": "technical"},
-    "Workshop": {"fee": 500, "category": "technical"},
+    "Workshop": {"fee": 300, "category": "technical"},
     
     # Non-Technical Events
     "Chess": {"fee": 50, "category": "non-technical"},
@@ -45,6 +45,7 @@ FEST_EVENTS = {
     "Photography": {"fee": 50, "category": "non-technical"},
     "Drawing": {"fee": 50, "category": "non-technical"},
     "MEME": {"fee": 50, "category": "non-technical"},
+    "Mehandhi": {"fee": 50, "category": "non-technical"},
     "Free Fire": {"fee": 200, "category": "non-technical"}
 }
 @app.route('/googlexxxxx.html')
