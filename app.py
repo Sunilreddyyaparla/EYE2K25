@@ -51,9 +51,29 @@ FEST_EVENTS = {
 def serve_verification_file():
     return send_from_directory('.', 'google12132244958a9137.html')
 
+VISITOR_FILE = "visitors.txt"
+
+def load_visitor_count():
+    """Load the visitor count from the file."""
+    if os.path.exists(VISITOR_FILE):
+        with open(VISITOR_FILE, "r") as file:
+            return int(file.read().strip())
+    return 0  # Default if file doesn't exist
+
+def save_visitor_count(count):
+    """Save the visitor count to the file."""
+    with open(VISITOR_FILE, "w") as file:
+        file.write(str(count))
+
+# Load visitor count on server start
+visitor_count = load_visitor_count()
+
 @app.route('/')
 def home():
-    return render_template('home.html')
+    global visitor_count
+    visitor_count += 1  # Increment count
+    save_visitor_count(visitor_count)  # Save to file
+    return render_template('home.html', visitor_count=visitor_count)
 
 @app.route('/events')
 def events():
