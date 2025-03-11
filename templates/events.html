@@ -398,6 +398,15 @@
     </div>
 </div>
 
+<!-- Mehandhi -->
+<div class="event-container" onclick="openModal('mehandhi')">
+    <h3>Mehandhi</h3>
+    <img src="{{ url_for('static', filename='images/mehandhi.png') }}" alt="Mehandhi" class="event-image">
+    <div class="event-details">
+        <p><strong>View Details</strong></p>
+    </div>
+</div>
+
     <!-- Modals -->
     <!-- Chess Modal -->
     <div id="chess" class="modal">
@@ -684,6 +693,55 @@
         </div>
     </div>
 </div>
+<!-- Mehandhi -->
+<div id="mehandhi" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('mehandhi')">&times;</span>
+        <div class="modal-header">
+            <h2>Mehandhi Competition</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="{{ url_for('static', filename='images/mehandhi.png') }}" alt="Mehandhi">
+            </div>
+            <div class="modal-details">
+                <h3>Event Description</h3>
+                <p>Get ready to showcase your artistic skills in the Mehandhi competition! Participants will create intricate and beautiful Mehandhi designs within the given time.</p>
+                <p>The event promotes creativity, precision, and cultural artistry in an engaging environment.</p>
+
+                <h3>Guidelines</h3>
+                <ul>
+                    <li>Participants must bring their own Mehandhi cones.</li>
+                    <li>Designs should be original and completed within the allotted time.</li>
+                    <li>Any theme can be chosen, but copying from pre-drawn templates is not allowed.</li>
+                    <li>Judges' decisions will be final based on creativity, neatness, and overall design.</li>
+                </ul>
+
+                <h3>Coordinators</h3>
+                <div class="modal-prize-section">
+                    <ul>
+                        <li>C Malavika : 9182223440</li>
+                        <li>J V Sai Charitha : 8500845829</li>
+                    </ul>
+                </div>
+
+                <h3>Prize Money</h3>
+                <div class="modal-prize-section">
+                    <p>₹500</p>
+                    <p>Note: Prize money increases if registrations are more</p>
+                </div>
+
+                <h3>Registration Fee</h3>
+                <div class="modal-registration">
+                    <p>₹50 per candidate</p>
+                </div>
+
+                <a href="{{ url_for('registration', event='Mehandhi') }}" class="modal-register-btn">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 
