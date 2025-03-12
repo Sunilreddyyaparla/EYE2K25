@@ -8,13 +8,16 @@ import base64
 from flask_mail import Mail, Message
 from datetime import datetime 
 from flask import send_from_directory
+import random
+from datetime import datetime, timedelta
+import time
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = 'your_super_secret_key'
 
 # Configure Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -135,6 +138,44 @@ def registration():
                          selected_event=selected_event,
                          event_fee=event_fee,
                          festevents=FEST_EVENTS)
+
+# Route to send OTP
+@app.route('/send_otp', methods=['POST'])
+def send_otp():
+    email = request.form.get('email')
+    if not email:
+        return jsonify({"status": "error", "message": "Email is required"})
+
+    otp = str(random.randint(100000, 999999))  # Store OTP as a string
+    session['otp'] = otp
+    session['otp_expiry'] = time.time() + 300  # Store expiry as a timestamp (5 minutes from now)
+
+    print(f"Generated OTP: {otp}")  # Debugging - Check if OTP is generated
+
+    msg = Message('Your OTP for Verification', sender=app.config['MAIL_USERNAME'], recipients=[email])
+    msg.body = f"Your OTP for verification is {otp}. This OTP is valid for 5 minutes."
+    mail.send(msg)
+
+    return jsonify({"status": "success", "message": "OTP sent successfully!"})
+
+@app.route('/verify_otp', methods=['POST'])
+def verify_otp():
+    user_otp = request.form.get('otp')
+    stored_otp = session.get('otp')
+    otp_expiry = session.get('otp_expiry')
+
+    print(f"User Entered OTP: {user_otp}, Stored OTP: {stored_otp}, Expiry Time: {otp_expiry}")  # Debugging
+
+    if not stored_otp or not otp_expiry or time.time() > otp_expiry:
+        return jsonify({"status": "error", "message": "OTP expired or not found. Please request a new one."})
+
+    if user_otp == stored_otp:  # Ensure both are compared as strings
+        session.pop('otp', None)
+        session.pop('otp_expiry', None)
+        return jsonify({"status": "success", "message": "OTP verified successfully!"})
+    else:
+        return jsonify({"status": "error", "message": "Invalid OTP. Please try again."})
+
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
