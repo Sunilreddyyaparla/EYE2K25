@@ -25,10 +25,23 @@
             </div>
 
             <div class="form-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" id="email" class="input-field" 
-                       placeholder="Email Address" required>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" id="email" class="input-field" placeholder="Email Address" required>
+                </div>
+                <button type="button" id="verifyEmail" class="verify-button">Get OTP</button>
+                <p class='note' style='font-size: 0.8rem; color: gray; margin-top: 5px;'>* Please do not click the 'Get OTP' multiple times</p>
                 <div class="error-message">Please enter a valid email address</div>
+            </div>
+            
+            <div class="form-group otp-group" style="display:none;">
+                <div class="input-wrapper">
+                    <i class="fas fa-key"></i>
+                    <input type="text" id="otp" class="input-field" placeholder="Enter OTP" maxlength="6">
+                </div>
+                <button type="button" id="verifyOtp" class="verify-button">Submit OTP</button>
+                <p class='note' style='font-size: 0.8rem; color: gray; margin-top: 5px;'>* Please do not click multiple times</p>
+                <div id="otpMessage" class="error-message"></div>
             </div>
 
             <div class="form-group">
@@ -64,46 +77,80 @@
         </form>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        function updateFee() {
-            const eventSelect = document.getElementById("event");
-            const feeDisplay = document.getElementById("eventFee");
-            const selectedOption = eventSelect.options[eventSelect.selectedIndex];
-            const eventFee = selectedOption.getAttribute("data-fee");
-
-            if (eventFee) {
-                feeDisplay.innerHTML = `Registration Fee: ₹${eventFee}`;
-                feeDisplay.classList.add('show');
-            } else {
-                feeDisplay.classList.remove('show');
-            }
-        }
-
-        // Form validation and submission handling
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            const button = this.querySelector('button[type="submit"]');
-            const loadingIcon = button.querySelector('.loading');
-            const buttonText = button.querySelector('span');
-
-            // Show loading state
-            loadingIcon.style.display = 'inline-block';
-            buttonText.textContent = 'Processing...';
-            button.disabled = true;
-
-            // Submit form normally (since we're using server-side handling)
-        });
-
-        // Real-time validation
-        document.querySelectorAll('.input-field').forEach(input => {
-            input.addEventListener('input', function() {
-                const errorMessage = this.nextElementSibling;
-                if (this.validity.valid) {
-                    errorMessage.style.display = 'none';
+        $(document).ready(function() {
+            let otpVerified = false;
+        
+            function validateForm() {
+                let fullname = $('#fullname').val().trim();
+                let email = $('#email').val().trim();
+                let mobile = $('#mobile').val().trim();
+                let college = $('#college').val().trim();
+                let event = $('#event').val().trim();
+        
+                let isValidName = /^[A-Za-z ]{3,50}$/.test(fullname);
+                let isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                let isValidMobile = /^[0-9]{10}$/.test(mobile);
+                let isValidCollege = college.length > 0;
+                let isValidEvent = event.length > 0;
+        
+                if (isValidName && isValidEmail && isValidMobile && isValidCollege && isValidEvent && otpVerified) {
+                    $('.button').prop('disabled', false);
                 } else {
-                    errorMessage.style.display = 'block';
+                    $('.button').prop('disabled', true);
                 }
+            }
+        
+            $('#fullname, #email, #mobile, #college, #event').on('input', validateForm);
+        
+            $('#verifyEmail').click(function() {
+                let email = $('#email').val().trim();
+                if (email === "") {
+                    alert('Please enter your email first!');
+                    return;
+                }
+                
+                $('#verifyEmail').prop('disabled', true);
+        
+                $.post('/send_otp', { email: email }, function(response) {
+                    alert(response.message);
+                    if (response.status === 'success') {
+                        $('.otp-group').show();
+                    }
+                }).fail(function() {
+                    alert('Failed to send OTP. Please try again.');
+                }).always(function() {
+                    $('#verifyEmail').prop('disabled', false);
+                });
+            });
+        
+            $('#verifyOtp').click(function() {
+                let otp = $('#otp').val().trim();
+                if (otp === "") {
+                    alert('Please enter the OTP!');
+                    return;
+                }
+                
+                $('#verifyOtp').prop('disabled', true);
+                
+                $.post('/verify_otp', { otp: otp }, function(response) {
+                    $('#otpMessage').text(response.message).show();
+                    if (response.status === 'success') {
+                        otpVerified = true;
+                        $('#verifyEmail, #otp, #verifyOtp').prop('disabled', true);
+                        $('#otpMessage').css('color', 'green');
+                        validateForm(); // Check again if all inputs are valid
+                    } else {
+                        $('#otpMessage').css('color', 'red');
+                    }
+                }).fail(function() {
+                    alert('OTP verification failed. Please try again.');
+                }).always(function() {
+                    $('#verifyOtp').prop('disabled', false);
+                });
             });
         });
-    </script>
+        </script>
 </body>
 </html>
