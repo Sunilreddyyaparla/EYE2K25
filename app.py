@@ -30,7 +30,7 @@ mail = Mail(app)
 
 # SheetsDB API Endpoints
 TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/jcin7xzlvn7ss"  # For technical events
-NON_TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/rdn5i9dzptwbr"  # For non-technical events
+NON_TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/m2lz39teceoia"  # For non-technical events
 
 # Fest events and their fees with category
 FEST_EVENTS = {
