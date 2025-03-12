@@ -134,6 +134,61 @@ select.input-field {
   display: none;
   animation: spin 1s linear infinite;
 }
+.verify-button {
+  width: auto;
+  padding: 0.75rem 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.verify-button:hover {
+  background: #1e40af;
+}
+
+.otp-group {
+  display: none;
+  margin-top: 1rem;
+}
+
+.otp-group input {
+  width: calc(100% - 120px);
+  display: inline-block;
+}
+
+.otp-group .verify-button {
+  width: 100px;
+  display: inline-block;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background: #a1a1a1;
+  cursor: not-allowed;
+}
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -166,4 +221,34 @@ select.input-field {
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: none;
+}
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 10px;
+  color: gray;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 10px 10px 30px; /* Space for icon */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.verify-button {
+  margin-top: 10px;
+  width: 100%;
 }
