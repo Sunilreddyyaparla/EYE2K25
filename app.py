@@ -29,7 +29,7 @@ app.config['MAIL_PASSWORD'] = 'ykro ugjv gbsp fqyu'
 mail = Mail(app)
 
 # SheetsDB API Endpoints
-TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/bm9dcl1kv9uv3"  # For technical events
+TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/3z85mwwugbnoh"  # For technical events
 NON_TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/m2lz39teceoia"  # For non-technical events
 
 # Fest events and their fees with category
