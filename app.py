@@ -38,9 +38,9 @@ FEST_EVENTS = {
     "Project Expo": {"fee": 300, "category": "technical"},
     "Hackathon": {"fee": 300, "category": "technical"},
     "Poster or Paper Presentation": {"fee": 300, "category": "technical"},
-    "Technical Quiz": {"fee": 1000, "category": "technical"},
+    "Technical Quiz": {"fee": 700, "category": "technical"},
     "Circuit Hunt": {"fee": 300, "category": "technical"},
-    "Workshop": {"fee": 300, "category": "technical"},
+    "Workshop": {"fee": 400, "category": "technical"},
     
     # Non-Technical Events
     "Chess": {"fee": 50, "category": "non-technical"},
