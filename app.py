@@ -57,27 +57,33 @@ def serve_verification_file():
 
 VISITOR_FILE = "visitors.txt"
 
-def load_visitor_count():
-    """Load the visitor count from the file."""
+# Load visitor count from file at startup
+if os.path.exists(VISITOR_FILE):
+    with open(VISITOR_FILE, "r") as f:
+        visitor_count = int(f.read().strip())
+else:
+    visitor_count = 0
+
+def get_visitor_count():
     if os.path.exists(VISITOR_FILE):
-        with open(VISITOR_FILE, "r") as file:
-            return int(file.read().strip())
-    return 0  # Default if file doesn't exist
+        try:
+            with open(VISITOR_FILE, "r") as f:
+                return int(f.read().strip())
+        except ValueError:  # Handle corrupted file
+            return 0
+    return 0
 
-def save_visitor_count(count):
-    """Save the visitor count to the file."""
-    with open(VISITOR_FILE, "w") as file:
-        file.write(str(count))
 
-# Load visitor count on server start
-visitor_count = load_visitor_count()
-
-@app.route('/')
+@app.route("/")
 def home():
     global visitor_count
-    visitor_count += 1  # Increment count
-    save_visitor_count(visitor_count)  # Save to file
-    return render_template('home.html', visitor_count=visitor_count)
+    visitor_count += 1  # Increment count on each visit
+
+    # Save updated count to file
+    with open(VISITOR_FILE, "w") as f:
+        f.write(str(visitor_count))
+
+    return render_template("home.html", visitor_count=visitor_count)
 
 @app.route('/events')
 def events():
