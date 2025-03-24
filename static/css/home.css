@@ -244,6 +244,35 @@ button:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+#countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#countdown-container {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFD700;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #FFD700;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes blink {
+    0% { color: #FFD700; }
+    100% { color: #FF4500; }
+}
+
+#countdown-timer {
+    animation: blink 1s infinite alternate;
+}
+
 
 /* Animation */
 @keyframes colorGlow {
