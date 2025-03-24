@@ -133,16 +133,24 @@
     </div>
 </div>
 
+<div id="countdown-wrapper">
+    
+    <div id="countdown-container">
+        <P>Mark the calender: April 4 & 5 2025</P>
+        <span id="countdown-timer"></span>
+    </div>
+</div>
+
 <!-- Video Section -->
 <div class="video-section">
     <h3 class="video-title">Teaser of EYE 2K25</h3>
     <div class="video-container">
         <div class="video-wrapper">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/V6EJoJ7-nGI?si=NWtTQUCw74KWR1xl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Sw2aiPpg790?si=T7elMbdi5_TuC-UU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
 </div>
-</br></br></br></br>
+</br></br></br>
 <div class="footer-container">
     <div class="footer-content">
         <div class="footer-text">&copy; Department of Electrical and Electronics Engineering</div>
@@ -153,6 +161,26 @@
 <script>
     function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
     function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+    function updateCountdown() {
+        const eventDate = new Date("April 3, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown-timer").innerHTML = 
+                `<strong>Time left for EYE 2K25: ${days} D ${hours} H ${minutes} Min ${seconds} Sec </strong>`;
+        } else {
+            document.getElementById("countdown-timer").innerHTML = "Event Started!";
+        }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000); // Update every second
 </script>
 </body>
 </html>
