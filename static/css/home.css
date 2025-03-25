@@ -248,31 +248,100 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 20px 10px;
+    margin-top: 20px;
 }
 
 #countdown-container {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #FFD700;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    color: #FFD700;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(20, 30, 60, 0.9), rgba(10, 15, 30, 0.9));
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    padding: 20px 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.3), 
+        0 0 20px rgba(0, 255, 255, 0.2);
+    gap: 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+#countdown-container:hover {
+    transform: scale(1.02);
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.5), 
+        0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+.event-date {
     text-align: center;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    flex: 1;
+    border-right: 1px solid rgba(0, 255, 255, 0.3);
+    padding-right: 20px;
 }
 
-@keyframes blink {
-    0% { color: #FFD700; }
-    100% { color: #FF4500; }
+.calendar-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+    color: #00ffff;
 }
 
-#countdown-timer {
-    animation: blink 1s infinite alternate;
+.event-date p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #00ffff;
 }
 
+.event-date h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.countdown-timer {
+    flex: 1;
+    text-align: center;
+}
+
+.countdown-timer p {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: #00ffff;
+}
+
+.timer-digits {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 576px) {
+    #countdown-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .event-date {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+}
 
 /* Animation */
 @keyframes colorGlow {
