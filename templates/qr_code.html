@@ -24,14 +24,12 @@
             <div id="timer">Time Remaining: 5:00</div>
         </div>
 
-        <!-- Checkbox to show alternative QR -->
         <div class="alternative-qr">
             <label>
                 <input type="checkbox" id="showAlternativeQR"> Show Alternative QR Code
             </label>
         </div>
 
-        <!-- Alternative QR Image and Note (Initially Hidden) -->
         <div id="alternativeQRContainer" style="display: none; text-align: center; margin-top: 15px;">
             <img src="static/images/qrcode.jpeg" alt="Alternative QR Code" width="250">
             <p style="color: red; font-weight: bold;">
@@ -59,7 +57,6 @@
 
             <input type="text" name="confirm_reference" id="confirm_reference" class="input-field" placeholder="Confirm UPI Reference Number" required>
             <div class="error-message" id="confirm_reference_error"></div>
-            
             <button type="submit" class="button">Confirm Payment</button>
         </form>
     </div>
@@ -90,10 +87,8 @@
                 }, 1000);
             }
 
-            // Show loading message
             $('.loading').show();
             
-            // Generate QR code
             $.ajax({
                 url: '/generate_qr',
                 method: 'POST',
@@ -115,7 +110,6 @@
                 }
             });
 
-            // Show/Hide Alternative QR
             $('#showAlternativeQR').on('change', function() {
                 if ($(this).is(':checked')) {
                     $('#alternativeQRContainer').slideDown();
@@ -124,7 +118,6 @@
                 }
             });
 
-            // Handle Payment App Selection
             $('#payment_app').on('change', function() {
                 if ($(this).val() === 'Other UPI') {
                     $('#other_upi_container').slideDown();
@@ -135,7 +128,6 @@
                 }
             });
 
-            // Validate UPI Reference Confirmation
             $('#confirm_reference').on('input', function() {
                 const reference = $('#upi_reference').val();
                 const confirmReference = $(this).val();
@@ -146,7 +138,6 @@
                 }
             });
 
-            // Handle Form Submission
             $('#transactionForm').on('submit', function(e) {
                 e.preventDefault();
                 let isValid = true;
@@ -155,11 +146,6 @@
                 const paymentApp = $('#payment_app').val();
                 if (!paymentApp) {
                     $('#payment_app_error').text('Please select a payment app').show();
-                    isValid = false;
-                }
-
-                if (paymentApp === 'Other UPI' && !$('#other_upi_app').val().trim()) {
-                    $('#other_upi_error').text('Please enter the UPI app name').show();
                     isValid = false;
                 }
 
@@ -173,7 +159,7 @@
                     $('#confirm_reference_error').text('Please confirm the UPI reference number').show();
                     isValid = false;
                 }
-                if (reference && confirmReference && reference !== confirmReference) {
+                if (reference !== confirmReference) {
                     $('#confirm_reference_error').text('UPI reference numbers do not match').show();
                     isValid = false;
                 }
@@ -181,21 +167,19 @@
                 if (isValid) {
                     window.paymentSubmitted = true;
                     clearInterval(countdownTimer);
+                    $('.button').prop('disabled', true).text('Processing...');
 
-                    const formData = $(this).serialize();
                     $.ajax({
                         url: '/submit_transaction',
                         method: 'POST',
-                        data: formData,
+                        data: $(this).serialize(),
                         success: function(response) {
                             if (response.status === 'success') {
                                 window.location.href = '/pay_success';
                             } else {
-                                alert(response.message || 'Transaction failed. Please try again.');
+                                alert(response.message || 'Transaction failed.');
+                                $('.button').prop('disabled', false).text('Confirm Payment');
                             }
-                        },
-                        error: function() {
-                            alert('Transaction failed. Please try again or contact support.');
                         }
                     });
                 }
