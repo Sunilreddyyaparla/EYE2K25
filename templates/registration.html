@@ -70,49 +70,54 @@
                 Registration Fee: ₹{{ event_fee }}
             </div>
 
-            <button type="submit" class="button">
+            <button type="submit" class="button" id="registerButton">
                 <span>Register Now</span>
                 <i class="fas fa-spinner loading"></i>
             </button>
         </form>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             let otpVerified = false;
-        
+
+            function disableButton(button) {
+                $(button).prop('disabled', true);
+                setTimeout(() => {
+                    $(button).prop('disabled', false);
+                }, 5000);
+            }
+            
             function validateForm() {
                 let fullname = $('#fullname').val().trim();
                 let email = $('#email').val().trim();
                 let mobile = $('#mobile').val().trim();
                 let college = $('#college').val().trim();
                 let event = $('#event').val().trim();
-        
+
                 let isValidName = /^[A-Za-z ]{3,50}$/.test(fullname);
                 let isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
                 let isValidMobile = /^[0-9]{10}$/.test(mobile);
                 let isValidCollege = college.length > 0;
                 let isValidEvent = event.length > 0;
-        
+
                 if (isValidName && isValidEmail && isValidMobile && isValidCollege && isValidEvent && otpVerified) {
-                    $('.button').prop('disabled', false);
+                    $('#registerButton').prop('disabled', false);
                 } else {
-                    $('.button').prop('disabled', true);
+                    $('#registerButton').prop('disabled', true);
                 }
             }
-        
+
             $('#fullname, #email, #mobile, #college, #event').on('input', validateForm);
-        
+
             $('#verifyEmail').click(function() {
                 let email = $('#email').val().trim();
                 if (email === "") {
                     alert('Please enter your email first!');
                     return;
                 }
+                disableButton(this);
                 
-                $('#verifyEmail').prop('disabled', true);
-        
                 $.post('/send_otp', { email: email }, function(response) {
                     alert(response.message);
                     if (response.status === 'success') {
@@ -120,19 +125,16 @@
                     }
                 }).fail(function() {
                     alert('Failed to send OTP. Please try again.');
-                }).always(function() {
-                    $('#verifyEmail').prop('disabled', false);
                 });
             });
-        
+
             $('#verifyOtp').click(function() {
                 let otp = $('#otp').val().trim();
                 if (otp === "") {
                     alert('Please enter the OTP!');
                     return;
                 }
-                
-                $('#verifyOtp').prop('disabled', true);
+                disableButton(this);
                 
                 $.post('/verify_otp', { otp: otp }, function(response) {
                     $('#otpMessage').text(response.message).show();
@@ -140,17 +142,15 @@
                         otpVerified = true;
                         $('#verifyEmail, #otp, #verifyOtp').prop('disabled', true);
                         $('#otpMessage').css('color', 'green');
-                        validateForm(); // Check again if all inputs are valid
+                        validateForm();
                     } else {
                         $('#otpMessage').css('color', 'red');
                     }
                 }).fail(function() {
                     alert('OTP verification failed. Please try again.');
-                }).always(function() {
-                    $('#verifyOtp').prop('disabled', false);
                 });
             });
         });
-        </script>
+    </script>
 </body>
 </html>
