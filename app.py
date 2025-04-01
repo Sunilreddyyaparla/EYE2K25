@@ -35,7 +35,7 @@ NON_TECHNICAL_SHEETDB_URL = "https://sheetdb.io/api/v1/m2lz39teceoia"  # For non
 # Fest events and their fees with category
 FEST_EVENTS = {
     # Technical Events
-    "Project Expo": {"fee": 300, "category": "technical"},
+    "Project Expo": {"fee": 800, "category": "technical"},
     "Hackathon": {"fee": 500, "category": "technical"},
     "Paper Presentation": {"fee": 300, "category": "technical"},
     "Poster Presentation": {"fee": 300, "category": "technical"},
