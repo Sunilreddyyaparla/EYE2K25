@@ -19,7 +19,7 @@
 
         <div class="qr-container">
             <img id="qrCode" alt="Payment QR Code">
-            <p>Scan this QR code using any UPI payment app</p>
+            <p style="color: red;">Scan this QR code using any UPI payment app and make the payment</p>
             <div class="loading">Generating QR code...</div>
             <div id="timer">Time Remaining: 5:00</div>
         </div>
@@ -45,6 +45,7 @@
                 <option value="Paytm">Paytm</option>
                 <option value="Other UPI">Other UPI App</option>
             </select>
+            <p style="color: red;">Note: Enter the Transaction ID which is visible in your payment bill once your payment is done.</p>
             <div class="error-message" id="payment_app_error"></div>
 
             <div class="other-upi-container" id="other_upi_container">
@@ -52,10 +53,10 @@
                 <div class="error-message" id="other_upi_error"></div>
             </div>
             
-            <input type="text" name="upi_reference" id="upi_reference" class="input-field" placeholder="Enter UPI Reference Number" required>
+            <input type="text" name="upi_reference" id="upi_reference" class="input-field" placeholder="Enter Transaction ID" required>
             <div class="error-message" id="upi_reference_error"></div>
 
-            <input type="text" name="confirm_reference" id="confirm_reference" class="input-field" placeholder="Confirm UPI Reference Number" required>
+            <input type="text" name="confirm_reference" id="confirm_reference" class="input-field" placeholder="Confirm Transaction ID" required>
             <div class="error-message" id="confirm_reference_error"></div>
             <button type="submit" class="button">Confirm Payment</button>
         </form>
