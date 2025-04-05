@@ -85,6 +85,10 @@ def contactus():
 def terms_and_conditions():
     return render_template('terms_and_conditions.html')
 
+@app.route('/ended')
+def ended():
+    return render_template('end.html')
+    
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'POST':
